@@ -20,7 +20,7 @@ Figma to code - no magic, just GitHub Copilot and a sprinkle of MCP.
 
 ## 🔎 Finding Your Figma API Key
 
-To connect your MCP server to Figma, you’ll need your unique API key. Follow the steps below to locate it.
+To connect your MCP server to Figma, you’ll need your unique API key. Follow the steps below to locate it:
 
 1. Open **Figma**.
 2. Click **Account** >> **Settings** >> **Security**.
@@ -66,8 +66,8 @@ To configure the **figma-developer-mcp** server, simply add the following entry 
 
 Once the MCP server is up and running, it will automatically extend the available tools in GitHub Copilot to include:
 
- - **download_figma_images**
- - **get_figma_data**
+ - **download_figma_images** - Downloads SVG and PNG images used in a Figma file based on image or icon node IDs.
+ - **get_figma_data** - Fetches information about a Figma file or a specific node within a file.
 
 You can confirm this by opening **GitHub Copilot**, navigating to **Configure Tools**, and scrolling to **MCP Server: Framelink Figma MCP** in the list.
 
@@ -76,6 +76,66 @@ You can confirm this by opening **GitHub Copilot**, navigating to **Configure To
 <img width="439" alt="image" src="https://github.com/user-attachments/assets/21b877fb-d5de-4eb4-b060-32690cd7726a" />
 
 
+## 🔗 Generating Code From A Figma Design
 
+Here comes the fun bit - generating code! Just follow the steps below to get GitHub Copilot working its magic on your Figma wireframes:
 
+1. In **Figma**, navigate to your design.
+2. Select the wireframe you intend to use. **Right click** >> **Copy/paste as** >> **Copy link to selection**.
+<img width="482" alt="Screenshot 2025-07-07 164537" src="https://github.com/user-attachments/assets/582b0689-e431-4cb4-b1fb-e6de7dd81e08" />
+
+3. After copying the Figma link, create a prompt in **GitHub Copilot Agent Mode** using that link.
+<img width="377" alt="Screenshot 2025-07-07 165105" src="https://github.com/user-attachments/assets/e801977a-a1f0-4605-af1e-a40d0754c6e3" />
+
+**Need tips for prompt engineering? Refer to the Best Practices section below.**
+
+## 💪 Best Practices
+
+To ensure high-quality, consistent code generation from your Figma designs using GitHub Copilot and MCP, follow these best practices:
+
+## 🧠 Prompt Engineering
+
+Crafting effective prompts is key to getting high-quality, production-ready code from GitHub Copilot. Here’s how to guide the model with precision:
+
+#### 🎯 Be Specific and Context-Rich
+- Include the Figma link, desired framework, and output format in your prompt.
+  - Example prompt: **Generate a responsive React 18 component using Tailwind CSS based on this Figma frame: https://www.figma.com/file/xyz123**
+
+#### 🧩 Specify Coding Language & Version
+- Always mention the language and version you want Github Copilot to use (e.g. React 18, TypeScript 5.3). This helps the model align with your project setup and avoid deprecated syntax.
+- Include a package.json and tsconfig.json in your workspace to give GitHub Copilot additional context.
+  
+#### 🎨 Guide Styling Choices
+- Prefer external styling over inline styles? Mention your preferred method:
+  - Tailwind CSS for utility-first styling.
+  - CSS Modules or styled-components for scoped styles.
+- If you have your own custom CSS or SCSS files, you can reference them directly in your prompt:
+  - Example Prompt: **Use styles from ./styles/components/ but do not generate new styles unless needed**
+
+#### 🧠 Model Selection & Prompt Scope
+- If available, choose a model optimised for front-end generation (e.g. gpt-4-turbo).
+- For complex UIs, break prompts into smaller parts (e.g. header, sidebar, footer) and stitch them together.
+  
+#### 🗂️ Use File Context to Your Advantage
+- Copilot uses surrounding code and file structure to improve its predictions.
+- Utilise a folder structure to organise generated code.
+
+## 📁 Folder Structure
+- Create a dedicated folder (e.g. /figma-wireframes/) to store:
+  - Figma links and metadata
+  - Generated components
+  - Associated assets (SVGs, PNGs)
+- Use a consistent naming convention for components (e.g. ButtonPrimary.tsx, NavHeader.tsx) to make reuse and testing easier.
+
+## 🧪 Testing & Validation
+- Always review generated code for:
+1. Accessibility (ARIA roles, keyboard navigation)
+2. Semantic HTML
+3. Performance (avoid unnecessary re-renders)
+   
+**Make sure to validate component behaviour visually and functionally.**
+
+## 🔐 Security & API Keys
+- Never hardcode your Figma API key. Use environment variables or .env files and add them to .gitignore.
+- Rotate tokens regularly and limit their scope to read-only access.
 
