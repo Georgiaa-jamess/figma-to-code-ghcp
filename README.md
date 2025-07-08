@@ -54,10 +54,17 @@ To configure the **figma-developer-mcp** server, simply add the following entry 
 ## Windows
 ```bash
 {
-  "mcpServers": {
+  "servers": {
     "Framelink Figma MCP": {
       "command": "cmd",
-      "args": ["/c", "npx", "-y", "figma-developer-mcp", "--figma-api-key=<YOUR-KEY>", "--stdio"]
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=<YOUR-KEY>",
+        "--stdio"
+      ]
     }
   }
 }
