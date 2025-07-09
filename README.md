@@ -146,3 +146,6 @@ Crafting effective prompts is key to getting high-quality, production-ready code
 - Never hardcode your Figma API key. Use environment variables or .env files and add them to .gitignore.
 - Rotate tokens regularly and limit their scope to read-only access.
 
+## ✨ Troubleshooting
+-  MCP 5000 Port needs to be open on the network for Visual Studio Code to access MCP servers. VPN access should allow in order to communicate with MCP servers.
+- MCP.json should not be excluded with code exclusions. How to do it: **Excluding content from GitHub Copilot: https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/content-exclusion/excluding-content-from-github-copilot**
